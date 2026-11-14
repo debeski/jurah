@@ -2,7 +2,8 @@
 
 An advanced stopwatch for medication. You tell it when the first dose is, how often
 it repeats and for how long; it reminds you at every dose and keeps a record of what
-you took and what you missed.
+you took and what you missed. A course can be renamed, paused, re-timed or stopped
+while it runs, and re-timing one keeps the doses it has already recorded.
 
 Built for Android, in Kotlin and Jetpack Compose. English and Arabic, fully mirrored.
 

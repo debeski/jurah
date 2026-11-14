@@ -64,6 +64,7 @@ import debeski.jurah.ui.theme.glass
 @Composable
 fun SchedulesScreen(
     onAddSchedule: () -> Unit,
+    onEditSchedule: (Long) -> Unit,
     onOpenHistory: () -> Unit,
     onOpenAbout: () -> Unit,
 ) {
@@ -184,6 +185,7 @@ fun SchedulesScreen(
                         ScheduleCardItem(
                             card = card,
                             now = state.now,
+                            onEdit = { onEditSchedule(card.schedule.id) },
                             onPause = { viewModel.pause(card) },
                             onResume = { viewModel.resume(card) },
                             onDelete = { pendingDelete = card },
@@ -197,6 +199,7 @@ fun SchedulesScreen(
                         ScheduleCardItem(
                             card = card,
                             now = state.now,
+                            onEdit = { onEditSchedule(card.schedule.id) },
                             onPause = { viewModel.pause(card) },
                             onResume = { viewModel.resume(card) },
                             onDelete = { pendingDelete = card },
@@ -289,6 +292,7 @@ private fun PermissionNotice(
 private fun ScheduleCardItem(
     card: ScheduleCard,
     now: Long,
+    onEdit: () -> Unit,
     onPause: () -> Unit,
     onResume: () -> Unit,
     onDelete: () -> Unit,
@@ -384,6 +388,9 @@ private fun ScheduleCardItem(
                 )
             }
             Box(modifier = Modifier.weight(1f))
+            IconButton(onClick = onEdit) {
+                Icon(JurahIcons.Edit, stringResource(R.string.action_edit), tint = scheme.onSurfaceVariant)
+            }
             if (schedule.status == ScheduleStatus.ACTIVE) {
                 IconButton(onClick = onPause) {
                     Icon(JurahIcons.Pause, stringResource(R.string.action_pause), tint = scheme.onSurfaceVariant)

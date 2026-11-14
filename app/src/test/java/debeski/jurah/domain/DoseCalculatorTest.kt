@@ -13,13 +13,18 @@ class DoseCalculatorTest {
     private val start = 1_700_000_000_000L
     private val eightHours = 8 * 60 * 60 * 1000L
 
-    private fun schedule(intervalMinutes: Int = 480, durationDays: Int? = 7) = Schedule(
+    private fun schedule(
+        intervalMinutes: Int = 480,
+        durationDays: Int? = 7,
+        indexBase: Int = 0,
+    ) = Schedule(
         id = 1L,
         name = "Amoxicillin",
         startAtMillis = start,
         intervalMinutes = intervalMinutes,
         durationDays = durationDays,
         createdAtMillis = start,
+        indexBase = indexBase,
     )
 
     @Test
@@ -93,5 +98,51 @@ class DoseCalculatorTest {
     @Test
     fun `elapsed slots never run past the end of a finite course`() {
         assertEquals(0..20, DoseCalculator.elapsedIndices(schedule(), start + 500 * eightHours))
+    }
+
+    // A re-timed course keeps its recorded doses by moving its grid past them, so the
+    // index that lands on the start time is indexBase rather than zero.
+
+    @Test
+    fun `a re-anchored grid starts at its index base`() {
+        val s = schedule(indexBase = 3)
+        assertEquals(start, DoseCalculator.scheduledAt(s, 3))
+        assertEquals(start + 2 * eightHours, DoseCalculator.scheduledAt(s, 5))
+    }
+
+    @Test
+    fun `total doses count the ones recorded before the course was re-timed`() {
+        assertEquals(21, DoseCalculator.gridDoses(schedule(indexBase = 3)))
+        assertEquals(24, DoseCalculator.totalDoses(schedule(indexBase = 3)))
+    }
+
+    @Test
+    fun `the last dose of a re-anchored course is still the end of its grid`() {
+        val s = schedule(indexBase = 3)
+        assertEquals(start + 20 * eightHours, DoseCalculator.lastDoseAt(s))
+        assertEquals(DoseCalculator.lastDoseAt(schedule()), DoseCalculator.lastDoseAt(s))
+    }
+
+    @Test
+    fun `the next dose of a re-anchored course is numbered from its base`() {
+        val s = schedule(indexBase = 3)
+        assertEquals(3, DoseCalculator.nextIndexAt(s, start - 60_000L))
+        assertEquals(5, DoseCalculator.nextIndexAt(s, start + 2 * eightHours))
+    }
+
+    @Test
+    fun `a re-anchored course ends after its own grid, not sooner`() {
+        val s = schedule(indexBase = 3)
+        assertEquals(23, DoseCalculator.nextIndexAt(s, start + 20 * eightHours))
+        assertNull(DoseCalculator.nextIndexAt(s, start + 21 * eightHours))
+    }
+
+    @Test
+    fun `elapsed slots of a re-anchored course never reach back before its base`() {
+        val s = schedule(indexBase = 3)
+        assertEquals(IntRange.EMPTY, DoseCalculator.elapsedIndices(s, start - 1))
+        assertEquals(3..3, DoseCalculator.elapsedIndices(s, start))
+        assertEquals(3..5, DoseCalculator.elapsedIndices(s, start + 2 * eightHours + 5))
+        assertEquals(3..23, DoseCalculator.elapsedIndices(s, start + 500 * eightHours))
     }
 }

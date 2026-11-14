@@ -4,8 +4,9 @@
 Repo: https://github.com/debeski/jurah (PUBLIC), branch `main`.
 Android medication-reminder app, Kotlin + Jetpack Compose, package `debeski.jurah`,
 version 0.1.0 (untagged). Full loop works and is verified on an API 36 emulator:
-create schedule → exact alarm fires → notification with Taken/Snooze → dose recorded →
-history. Debug and minified release both build; release APK is 2.0 MB.
+create or edit a schedule → exact alarm fires → notification with Taken/Snooze → dose
+recorded → history. Debug and minified release both build; release APK is 2.0 MB.
+Room database is at version 2 (`schedules.indexBase`), migrated via `@AutoMigration`.
 
 ## Adopted Standards & Rules
 - Gradle 9.3.1 / AGP 9.1.0 / Kotlin 2.4.0 / KSP 2.3.14 / Compose BOM 2026.09.00 / Room 2.8.5.
@@ -13,6 +14,9 @@ history. Debug and minified release both build; release APK is 2.0 MB.
 - `android.builtInKotlin=false` + `android.newDsl=false` are REQUIRED (KSP cannot attach
   to AGP 9 built-in Kotlin). Both are removed at AGP 10 — see docs/build-and-release.md.
 - Dose times are computed from (startAt, interval, durationDays), never stored as rows.
+- Re-timing a course moves `Schedule.indexBase` past the highest recorded dose index,
+  so a new dose index can never overwrite a stored dose. Dose numbers stay continuous
+  and `totalDoses` = indexBase + gridDoses. See docs/architecture.md.
 - One chained exact alarm per schedule; the receiver arms the next dose.
 - `SCHEDULE_EXACT_ALARM`, not `USE_EXACT_ALARM` (Play policy risk).
 - No dynamic colour: the magenta/blue scheme is brand identity.
@@ -27,6 +31,9 @@ history. Debug and minified release both build; release APK is 2.0 MB.
   stepper "decrease" used a ✕ instead of a minus.
 - Release build took ~2h wall-clock under R8 while an emulator was running. Not
   investigated; re-time it on an idle machine before assuming it is normal.
+- Backdating a start time reports the elapsed slots as missed. Same at create and at
+  edit, so it is consistent, but it does accuse the user for a schedule that did not
+  exist yet. Needs a product decision, not a bug fix.
 
 ## Active & Pending Tasks
 - [ ] Enumerate Apache-2.0 AndroidX deps on the licences screen (only Cairo is listed).
@@ -37,11 +44,13 @@ history. Debug and minified release both build; release APK is 2.0 MB.
 - [ ] Play Console: closed test, 12 testers × 14 continuous days, before production.
 - [ ] Store listing: feature graphic, per-locale screenshots, EN/AR descriptions.
 - [ ] Data safety form + privacy policy URL.
-- [ ] Edit an existing schedule (only create/pause/resume/delete exist today).
-- [ ] Instrumented tests for the receivers; only `DoseCalculator` is unit-tested.
+- [ ] Instrumented tests for the receivers and the v1→v2 migration; only
+      `DoseCalculator` is unit-tested.
 - [ ] Consider a "taken late" path — Taken always records against the fired dose index.
 
 ### Completed Recently
+- Edit an existing course: `ui/add` became `ui/editor`, one screen for create and edit,
+  with grid re-anchoring so a re-timing keeps recorded doses.
 - Cairo OFL 1.1 text bundled as a raw resource with an in-app licences screen.
 - RTL fix: back chevron now auto-mirrors (it pointed the wrong way in Arabic).
 - Full app: schedules list, add flow, alarm engine, notifications, history, about.
@@ -50,7 +59,12 @@ history. Debug and minified release both build; release APK is 2.0 MB.
 - Adaptive launcher icon incl. monochrome/themed variant.
 
 ## Validation & Docs Log
-- Tests: `./gradlew :app:testDebugUnitTest` → 12/12 pass (DoseCalculator).
+- Tests: `./gradlew :app:testDebugUnitTest` → 18/18 pass (DoseCalculator).
+- Edit flow on emulator API 36 (2026-11-15): installed over v1 data, Room migrated to
+  v2 with no error; editor prefilled; changing the time showed the re-timing notice;
+  after save `indexBase=2`, both recorded dose rows intact at their original times,
+  one exact alarm armed at the new dose 4 time, card read "2 of 23 taken", history
+  kept both doses. Arabic mirrored and back discarded an unsaved edit.
 - Manual on emulator API 36: alarm fired exactly on time, chained next dose at +8h,
   Taken wrote `dose_events`, history rendered, Arabic RTL put the FAB bottom-left.
   Minified release installed and armed an alarm (Room survives R8).
@@ -70,5 +84,5 @@ history. Debug and minified release both build; release APK is 2.0 MB.
 
 ## Agent Handoff
 v0.1.0 is committed and pushed to github.com/debeski/jurah (`main`, public), untagged.
-Next substantive work is release signing and the Play closed-test track; next product
-gap is editing an existing schedule. The checkout dir is still `app-pilly`.
+Next substantive work is release signing and the Play closed-test track. The checkout
+dir is still `app-pilly`.

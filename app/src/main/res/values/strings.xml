@@ -71,8 +71,11 @@
     <string name="action_save">Save</string>
     <string name="action_confirm">OK</string>
 
-    <!-- Add schedule -->
+    <string name="action_edit">Edit</string>
+
+    <!-- Add or edit a schedule -->
     <string name="add_title">New schedule</string>
+    <string name="edit_title">Edit schedule</string>
     <string name="field_name_label">Name (optional)</string>
     <string name="field_name_placeholder">Amoxicillin</string>
     <string name="section_first_dose">First dose</string>
@@ -87,6 +90,7 @@
     <string name="increase">Increase</string>
     <string name="summary_finite">%1$s, ending %2$s</string>
     <string name="summary_ongoing">Repeats until you stop it</string>
+    <string name="edit_retimed_notice">Doses you already recorded stay in your history. The new timing counts on from them.</string>
 
     <!-- History -->
     <string name="history_empty_title">Nothing recorded yet</string>

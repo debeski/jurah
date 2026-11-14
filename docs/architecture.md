@@ -19,8 +19,9 @@ A schedule stores only `startAtMillis`, `intervalMinutes` and `durationDays`. Ev
 dose time follows from them:
 
 ```
-scheduledAt(n) = startAtMillis + n * intervalMinutes * 60_000
-totalDoses     = durationDays * 1440 / intervalMinutes     (null when ongoing)
+scheduledAt(n) = startAtMillis + (n - indexBase) * intervalMinutes * 60_000
+gridDoses      = durationDays * 1440 / intervalMinutes     (null when ongoing)
+totalDoses     = indexBase + gridDoses
 ```
 
 This matters for three reasons:
@@ -32,6 +33,28 @@ This matters for three reasons:
 
 Only doses the user *acted on* are stored, in `dose_events`, keyed uniquely by
 (`scheduleId`, `doseIndex`).
+
+## Re-timing a course keeps its history
+
+Because dose times are derived, changing `startAtMillis` or `intervalMinutes` moves
+every dose — and a dose index is the key under which a taken dose is already stored.
+A new index 0 would therefore land on the row holding the first dose the user
+actually took, and `dose_events` upserts on conflict, so that row would be gone.
+
+`indexBase` is the dose index that falls on `startAtMillis`. It is 0 until a course
+is re-timed; saving a new start or interval sets it past the highest recorded index
+(`ScheduleEditorViewModel.update`). The grid then starts where the record stops:
+
+- Recorded doses keep their rows, their stored `scheduledAtMillis` and their numbers.
+- Dose numbers stay continuous, so a course re-timed after three doses arms dose 4.
+- Renaming or extending a course leaves the grid alone, so `indexBase` does not move.
+
+History reports doses below `indexBase` from their own stored times rather than
+recomputing them, since the grid they belonged to no longer exists.
+
+The cost of this design is that *derived* information from before the edit is lost:
+a slot that elapsed unrecorded on the old grid is simply no longer on any grid. Only
+doses the user acted on were ever stored, so only those can be preserved.
 
 ## One alarm per schedule, chained
 

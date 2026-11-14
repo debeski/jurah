@@ -18,6 +18,9 @@ class DoseRepository(private val dao: DoseEventDao) {
     suspend fun forSchedule(scheduleId: Long): List<DoseEvent> =
         dao.forSchedule(scheduleId).map { it.toDomain() }
 
+    /** Highest dose index ever recorded for a course, or null when none has been. */
+    suspend fun maxDoseIndex(scheduleId: Long): Int? = dao.maxDoseIndex(scheduleId)
+
     suspend fun record(
         scheduleId: Long,
         doseIndex: Int,

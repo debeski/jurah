@@ -15,6 +15,7 @@ fun ScheduleEntity.toDomain() = Schedule(
     durationDays = durationDays,
     status = enumOrDefault(status, ScheduleStatus.ACTIVE),
     createdAtMillis = createdAtMillis,
+    indexBase = indexBase,
 )
 
 fun Schedule.toEntity() = ScheduleEntity(
@@ -25,6 +26,7 @@ fun Schedule.toEntity() = ScheduleEntity(
     durationDays = durationDays,
     status = status.name,
     createdAtMillis = createdAtMillis,
+    indexBase = indexBase,
 )
 
 fun DoseEventEntity.toDomain() = DoseEvent(

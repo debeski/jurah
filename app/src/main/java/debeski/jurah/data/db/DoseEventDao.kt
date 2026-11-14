@@ -21,6 +21,9 @@ interface DoseEventDao {
     @Query("SELECT COUNT(*) FROM dose_events WHERE scheduleId = :scheduleId")
     suspend fun countForSchedule(scheduleId: Long): Int
 
+    @Query("SELECT MAX(doseIndex) FROM dose_events WHERE scheduleId = :scheduleId")
+    suspend fun maxDoseIndex(scheduleId: Long): Int?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(event: DoseEventEntity)
 

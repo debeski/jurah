@@ -17,7 +17,7 @@ API 36 emulator.
 - **Scheduling model** (`DoseCalculator`): dose times are a pure function of
   (`startAtMillis`, `intervalMinutes`, `durationDays`) rather than stored rows, so an
   indefinite course costs nothing and editing a schedule orphans no dose records.
-  Covered by 12 unit tests.
+  Covered by 18 unit tests.
 - **Alarm engine** (`AlarmScheduler`, `AlarmReceiver`, `BootReceiver`): arms exactly one
   exact alarm per schedule and chains the next on each firing. Falls back to
   `setWindow` when the `SCHEDULE_EXACT_ALARM` grant is absent, and re-arms every active
@@ -28,6 +28,13 @@ API 36 emulator.
 - **Schedules screen**: glass cards grouped Active/Inactive with a live countdown,
   dose progress, missed count (after a one-hour grace), and pause/resume/delete.
   In-context notices for the notification and exact-alarm permissions.
+- **Edit a schedule** (`ui/editor`): the add screen now also edits an existing course,
+  reached from an edit icon on each card. Saving a changed start time or interval
+  re-anchors the dose grid past the doses already recorded (`Schedule.indexBase`,
+  database v2 via `@AutoMigration`) instead of letting a new dose index overwrite the
+  history under it, and the editor says so once a re-timing would affect recorded
+  doses. A course that had completed goes back to active if the edit gives it a dose
+  ahead of it; a paused one stays paused. Covered by 6 further `DoseCalculator` tests.
 - **Add schedule**: optional name, calendar + clock pickers for the first dose,
   interval presets (4/6/8/12/24 h) plus custom hours, a day count or an ongoing toggle,
   and a live summary of total doses and end date.

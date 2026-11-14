@@ -43,7 +43,9 @@ and compileSdk 37.
 ```
 
 Room exports schemas to `app/schemas/`. Commit them — they are what makes a future
-migration verifiable.
+migration verifiable. The database is at version 2; v1 → v2 adds
+`schedules.indexBase` and is an `@AutoMigration`, which Room can only generate
+because the column declares a SQL `defaultValue`.
 
 ## Still to do before publishing
 
