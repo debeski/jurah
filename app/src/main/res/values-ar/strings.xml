@@ -106,4 +106,8 @@
     <string name="about_privacy_body">كل شيء يبقى على هذا الجهاز: لا حساب ولا إذن للإنترنت ولا تحليلات.</string>
     <string name="about_font_title">الخط</string>
     <string name="about_font_body">بخط القاهرة (Cairo) بموجب رخصة SIL للخطوط المفتوحة 1.1.</string>
+    <string name="about_font_action">عرض الترخيص</string>
+    <string name="licenses_title">تراخيص المصادر المفتوحة</string>
+    <string name="licenses_cairo_name">خط القاهرة (Cairo)</string>
+    <string name="licenses_cairo_summary">حقوق النشر 2009 لمؤلفي مشروع Cairo. يُستخدم بموجب رخصة SIL للخطوط المفتوحة 1.1.</string>
 </resources>

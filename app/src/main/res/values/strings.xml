@@ -107,4 +107,8 @@
     <string name="about_privacy_body">Everything stays on this device. Jurah has no account, no network permission and no analytics.</string>
     <string name="about_font_title">Typeface</string>
     <string name="about_font_body">Set in Cairo, used under the SIL Open Font License 1.1.</string>
+    <string name="about_font_action">View license</string>
+    <string name="licenses_title">Open source licenses</string>
+    <string name="licenses_cairo_name">Cairo</string>
+    <string name="licenses_cairo_summary">Copyright 2009 The Cairo Project Authors. Used under the SIL Open Font License 1.1.</string>
 </resources>

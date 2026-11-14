@@ -28,6 +28,13 @@ See [docs/build-and-release.md](docs/build-and-release.md) for the toolchain, th
 required Gradle flags and the route to Play, and [docs/architecture.md](docs/architecture.md)
 for how scheduling works.
 
+## Third-party
+
+Cairo, by The Cairo Project Authors, under the [SIL Open Font License 1.1](app/src/main/res/raw/ofl_cairo.txt).
+The licence text ships with the app and is readable under About → Typeface → View license.
+
+Everything else is AndroidX/Jetpack under Apache 2.0; those are not yet enumerated in-app.
+
 ## Privacy
 
 No network permission, no account, no analytics. All data is in a local Room database.

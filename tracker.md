@@ -29,8 +29,8 @@ history. Debug and minified release both build; release APK is 2.0 MB.
   investigated; re-time it on an idle machine before assuming it is normal.
 
 ## Active & Pending Tasks
-- [ ] Bundle the SIL OFL 1.1 text for Cairo. The font is redistributed in a PUBLIC repo
-      and in the APK; About attributes it, but the licence text should ship too.
+- [ ] Enumerate Apache-2.0 AndroidX deps on the licences screen (only Cairo is listed).
+- [ ] Polish: content scrolls under the transparent top bar; consider a scroll-aware scrim.
 - [ ] Rename the checkout dir `~/Desktop/depy/app-pilly` → `app-jurah` (workspace rule §5);
       not done here because it would invalidate the running session's working directory.
 - [ ] Release signing: upload keystore + gitignored `keystore.properties`.
@@ -42,6 +42,8 @@ history. Debug and minified release both build; release APK is 2.0 MB.
 - [ ] Consider a "taken late" path — Taken always records against the fired dose index.
 
 ### Completed Recently
+- Cairo OFL 1.1 text bundled as a raw resource with an in-app licences screen.
+- RTL fix: back chevron now auto-mirrors (it pointed the wrong way in Arabic).
 - Full app: schedules list, add flow, alarm engine, notifications, history, about.
 - Bilingual EN/AR with correct Arabic plural categories; RTL mirroring verified.
 - Cairo variable font bundled (OFL, attributed in About).
@@ -54,6 +56,7 @@ history. Debug and minified release both build; release APK is 2.0 MB.
   Minified release installed and armed an alarm (Room survives R8).
 - After the Jurah rename: build + 12/12 tests pass; on-device smoke test wrote to
   `jurah.db` and armed `debeski.jurah.action.DOSE_DUE`; Arabic app name جرعة renders.
+- OFL screen verified on device in both locales; licence packaged as res/raw/ofl_cairo.txt.
 - Docs: README.md, docs/architecture.md, docs/build-and-release.md, CHANGELOG.md v0.1.0.
 
 ## Global Helpers & Rules

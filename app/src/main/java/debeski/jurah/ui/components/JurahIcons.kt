@@ -18,13 +18,19 @@ import androidx.compose.ui.unit.dp
  */
 object JurahIcons {
 
-    private fun stroked(name: String, width: Float = 2f, block: PathBuilder.() -> Unit) =
+    private fun stroked(
+        name: String,
+        width: Float = 2f,
+        autoMirror: Boolean = false,
+        block: PathBuilder.() -> Unit,
+    ) =
         ImageVector.Builder(
             name = name,
             defaultWidth = 24.dp,
             defaultHeight = 24.dp,
             viewportWidth = 24f,
             viewportHeight = 24f,
+            autoMirror = autoMirror,
         ).apply {
             path(
                 stroke = SolidColor(Color.Black),
@@ -77,8 +83,9 @@ object JurahIcons {
         }
     }
 
+    // autoMirror: a back chevron must point the other way under an RTL layout.
     val Back: ImageVector by lazy {
-        stroked("Back") {
+        stroked("Back", autoMirror = true) {
             moveTo(15f, 4.5f); lineTo(7.5f, 12f); lineTo(15f, 19.5f)
         }
     }

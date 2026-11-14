@@ -7,6 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import debeski.jurah.ui.about.AboutScreen
 import debeski.jurah.ui.add.AddScheduleScreen
 import debeski.jurah.ui.history.HistoryScreen
+import debeski.jurah.ui.licenses.LicensesScreen
 import debeski.jurah.ui.schedules.SchedulesScreen
 
 private object Routes {
@@ -14,6 +15,7 @@ private object Routes {
     const val ADD = "add"
     const val HISTORY = "history"
     const val ABOUT = "about"
+    const val LICENSES = "licenses"
 }
 
 @Composable
@@ -37,7 +39,13 @@ fun JurahNavHost() {
             HistoryScreen(onBack = { navController.popBackStack() })
         }
         composable(Routes.ABOUT) {
-            AboutScreen(onBack = { navController.popBackStack() })
+            AboutScreen(
+                onBack = { navController.popBackStack() },
+                onOpenLicenses = { navController.navigate(Routes.LICENSES) },
+            )
+        }
+        composable(Routes.LICENSES) {
+            LicensesScreen(onBack = { navController.popBackStack() })
         }
     }
 }

@@ -38,6 +38,11 @@ API 36 emulator.
   instantiated per weight so Arabic letterforms stay correct when bold.
 - **Icon set** (`JurahIcons`): the app draws its own glyphs as `ImageVector`s. Material's
   icon artifacts are deprecated and frozen, and none of them has a pill.
+- **Font licensing**: Cairo's SIL OFL 1.1 text ships as `res/raw/ofl_cairo.txt` and is
+  readable in-app via About → Typeface → View license. The OFL requires its text and
+  copyright notice to travel with the font, which attribution alone does not satisfy.
+- **RTL fix**: `JurahIcons` now supports `autoMirror`, set on the back chevron, which
+  previously pointed left under an Arabic layout.
 - **RTL**: the FAB sits bottom-right in English and bottom-left in Arabic via the
   Scaffold's end anchoring; all strings localised in `values-ar`, with correct Arabic
   plural categories for days and doses.

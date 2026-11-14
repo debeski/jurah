@@ -15,6 +15,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -33,7 +34,10 @@ import debeski.jurah.ui.components.JurahIcons
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AboutScreen(onBack: () -> Unit) {
+fun AboutScreen(
+    onBack: () -> Unit,
+    onOpenLicenses: () -> Unit,
+) {
     JurahBackground {
         Scaffold(
             containerColor = Color.Transparent,
@@ -115,6 +119,8 @@ fun AboutScreen(onBack: () -> Unit) {
                     icon = JurahIcons.Edit,
                     title = stringResource(R.string.about_font_title),
                     body = stringResource(R.string.about_font_body),
+                    actionLabel = stringResource(R.string.about_font_action),
+                    onAction = onOpenLicenses,
                 )
             }
         }
@@ -122,7 +128,13 @@ fun AboutScreen(onBack: () -> Unit) {
 }
 
 @Composable
-private fun InfoCard(icon: ImageVector, title: String, body: String) {
+private fun InfoCard(
+    icon: ImageVector,
+    title: String,
+    body: String,
+    actionLabel: String? = null,
+    onAction: (() -> Unit)? = null,
+) {
     GlassCard {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(icon, contentDescription = null, tint = MaterialTheme.colorScheme.secondary)
@@ -139,5 +151,10 @@ private fun InfoCard(icon: ImageVector, title: String, body: String) {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(top = 8.dp),
         )
+        if (actionLabel != null && onAction != null) {
+            TextButton(onClick = onAction, modifier = Modifier.padding(top = 4.dp)) {
+                Text(actionLabel)
+            }
+        }
     }
 }
