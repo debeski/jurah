@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:rotation="-40">
+        <!-- capsule body -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M42,42 H66 A12,12 0 0 1 66,66 H42 A12,12 0 0 1 42,42 Z" />
+        <!-- clinical-blue half -->
+        <path
+            android:fillColor="#7FB2FF"
+            android:pathData="M54,42 H42 A12,12 0 0 0 42,66 H54 Z" />
+        <!-- seam -->
+        <path
+            android:fillColor="#B4005C"
+            android:pathData="M53.0,42 h2 v24 h-2 z" />
+    </group>
+</vector>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Dose reminders are the product, so notifications are requested at first run. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!--
+      SCHEDULE_EXACT_ALARM rather than USE_EXACT_ALARM: Play restricts the latter to
+      clock and calendar apps. This one is user-granted, and the UI asks for it.
+    -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+    <!-- Alarms are dropped on reboot; the boot receiver re-arms every active course. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name=".JurahApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Jurah">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Jurah"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".alarm.AlarmReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".alarm.DoseActionReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".alarm.BootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

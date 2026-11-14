@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Jurah</string>
+
+    <!-- Navigation -->
+    <string name="nav_history">History</string>
+    <string name="nav_about">About</string>
+    <string name="nav_back">Back</string>
+
+    <!-- Schedule list -->
+    <string name="action_add_schedule">Add schedule</string>
+    <string name="empty_title">No schedules yet</string>
+    <string name="empty_body">Add a schedule and Jurah will remind you at every dose, for as many days as you need.</string>
+    <string name="section_active">Active</string>
+    <string name="section_inactive">Inactive</string>
+    <string name="action_pause">Pause</string>
+    <string name="action_resume">Resume</string>
+    <string name="action_delete">Delete</string>
+    <string name="unnamed_schedule">Medication</string>
+
+    <!-- Notifications -->
+    <string name="channel_dose_name">Dose reminders</string>
+    <string name="channel_dose_description">Alerts you when a dose is due.</string>
+    <string name="notification_title_fallback">Time for your dose</string>
+    <string name="notification_body_counted">Dose %1$d of %2$d · %3$s</string>
+    <string name="notification_body_ongoing">Due at %1$s</string>
+    <string name="action_mark_taken">Taken</string>
+    <string name="action_snooze">Snooze</string>
+
+    <!-- Formatting -->
+    <string name="date_time_pair">%1$s · %2$s</string>
+    <string name="interval_4h">Every 4 hours</string>
+    <string name="interval_6h">Every 6 hours</string>
+    <string name="interval_8h">Every 8 hours</string>
+    <string name="interval_12h">Every 12 hours</string>
+    <string name="interval_24h">Once a day</string>
+    <string name="interval_custom_hours">Every %1$d hours</string>
+    <string name="dose_due_now">Dose due now</string>
+    <string name="dose_due_in">Next dose in %1$s</string>
+    <string name="span_days_hours">%1$dd %2$dh</string>
+    <string name="span_hours_minutes">%1$dh %2$dm</string>
+    <string name="span_minutes">%1$dm</string>
+    <string name="progress_taken">%1$d of %2$d taken</string>
+    <string name="progress_taken_ongoing">%1$d taken</string>
+    <string name="missed_count">%1$d missed</string>
+    <string name="course_ongoing">Ongoing</string>
+    <string name="course_finished">Finished</string>
+    <string name="course_paused">Paused</string>
+    <string name="course_starts">Starts %1$s</string>
+    <plurals name="days_count">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <plurals name="doses_count">
+        <item quantity="one">%d dose</item>
+        <item quantity="other">%d doses</item>
+    </plurals>
+
+    <!-- Permissions -->
+    <string name="permission_notifications_title">Notifications are off</string>
+    <string name="permission_notifications_body">Jurah cannot remind you about a dose until notifications are allowed.</string>
+    <string name="permission_notifications_action">Allow notifications</string>
+    <string name="permission_exact_title">Reminders may arrive late</string>
+    <string name="permission_exact_body">Android needs permission to alarm at an exact time. Without it a dose can be delayed while the phone sleeps.</string>
+    <string name="permission_exact_action">Allow exact alarms</string>
+
+    <!-- Dialogs -->
+    <string name="delete_confirm_title">Delete this schedule?</string>
+    <string name="delete_confirm_body">Its reminders stop and its dose history is removed. This cannot be undone.</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_save">Save</string>
+    <string name="action_confirm">OK</string>
+
+    <!-- Add schedule -->
+    <string name="add_title">New schedule</string>
+    <string name="field_name_label">Name (optional)</string>
+    <string name="field_name_placeholder">Amoxicillin</string>
+    <string name="section_first_dose">First dose</string>
+    <string name="section_interval">How often</string>
+    <string name="section_duration">For how long</string>
+    <string name="pick_date">Choose the first day</string>
+    <string name="pick_time">Choose the time</string>
+    <string name="duration_ongoing">Ongoing, no end date</string>
+    <string name="interval_custom">Custom</string>
+    <string name="custom_hours">%1$d h between doses</string>
+    <string name="decrease">Decrease</string>
+    <string name="increase">Increase</string>
+    <string name="summary_finite">%1$s, ending %2$s</string>
+    <string name="summary_ongoing">Repeats until you stop it</string>
+
+    <!-- History -->
+    <string name="history_empty_title">Nothing recorded yet</string>
+    <string name="history_empty_body">Doses you mark as taken, and any you miss, show up here.</string>
+    <string name="status_taken">Taken</string>
+    <string name="status_missed">Missed</string>
+    <string name="status_skipped">Skipped</string>
+    <string name="history_acted_at">marked %1$s</string>
+
+    <!-- About -->
+    <string name="about_tagline">A quiet stopwatch for the medicine you have to remember.</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_how_title">How reminders work</string>
+    <string name="about_how_body">Jurah arms one exact alarm for your next dose, and arms the following one each time it fires. Reminders are re-armed after a restart, so a course keeps running.</string>
+    <string name="about_accessibility_title">Accessibility</string>
+    <string name="about_accessibility_body">Every action has a screen-reader label, text follows your system font size, and the layout mirrors fully in Arabic.</string>
+    <string name="about_privacy_title">Privacy</string>
+    <string name="about_privacy_body">Everything stays on this device. Jurah has no account, no network permission and no analytics.</string>
+    <string name="about_font_title">Typeface</string>
+    <string name="about_font_body">Set in Cairo, used under the SIL Open Font License 1.1.</string>
+</resources>

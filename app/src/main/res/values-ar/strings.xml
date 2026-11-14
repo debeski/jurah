@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">جرعة</string>
+
+    <string name="nav_history">السجل</string>
+    <string name="nav_about">حول التطبيق</string>
+    <string name="nav_back">رجوع</string>
+
+    <string name="action_add_schedule">إضافة جدول</string>
+    <string name="empty_title">لا توجد جداول بعد</string>
+    <string name="empty_body">أضف جدولاً وستصلك تنبيهات عند كل جرعة، للمدة التي تحددها.</string>
+    <string name="section_active">نشط</string>
+    <string name="section_inactive">غير نشط</string>
+    <string name="action_pause">إيقاف مؤقت</string>
+    <string name="action_resume">متابعة</string>
+    <string name="action_delete">حذف</string>
+    <string name="unnamed_schedule">دواء</string>
+
+    <string name="channel_dose_name">تنبيهات الجرعات</string>
+    <string name="channel_dose_description">ينبّهك عند حلول موعد الجرعة.</string>
+    <string name="notification_title_fallback">موعد جرعتك</string>
+    <string name="notification_body_counted">الجرعة %1$d من %2$d · %3$s</string>
+    <string name="notification_body_ongoing">موعدها %1$s</string>
+    <string name="action_mark_taken">تم تناولها</string>
+    <string name="action_snooze">تأجيل</string>
+
+    <string name="date_time_pair">%1$s · %2$s</string>
+    <string name="interval_4h">كل 4 ساعات</string>
+    <string name="interval_6h">كل 6 ساعات</string>
+    <string name="interval_8h">كل 8 ساعات</string>
+    <string name="interval_12h">كل 12 ساعة</string>
+    <string name="interval_24h">مرة واحدة يومياً</string>
+    <string name="interval_custom_hours">كل %1$d ساعة</string>
+    <string name="dose_due_now">موعد الجرعة الآن</string>
+    <string name="dose_due_in">الجرعة التالية بعد %1$s</string>
+    <string name="span_days_hours">%1$d ي %2$d س</string>
+    <string name="span_hours_minutes">%1$d س %2$d د</string>
+    <string name="span_minutes">%1$d د</string>
+    <string name="progress_taken">تم تناول %1$d من %2$d</string>
+    <string name="progress_taken_ongoing">تم تناول %1$d</string>
+    <string name="missed_count">%1$d فائتة</string>
+    <string name="course_ongoing">مستمر</string>
+    <string name="course_finished">منتهي</string>
+    <string name="course_paused">موقوف مؤقتاً</string>
+    <string name="course_starts">يبدأ %1$s</string>
+    <plurals name="days_count">
+        <item quantity="zero">%d يوم</item>
+        <item quantity="one">يوم واحد</item>
+        <item quantity="two">يومان</item>
+        <item quantity="few">%d أيام</item>
+        <item quantity="many">%d يوماً</item>
+        <item quantity="other">%d يوم</item>
+    </plurals>
+    <plurals name="doses_count">
+        <item quantity="zero">%d جرعة</item>
+        <item quantity="one">جرعة واحدة</item>
+        <item quantity="two">جرعتان</item>
+        <item quantity="few">%d جرعات</item>
+        <item quantity="many">%d جرعة</item>
+        <item quantity="other">%d جرعة</item>
+    </plurals>
+
+    <string name="permission_notifications_title">التنبيهات معطّلة</string>
+    <string name="permission_notifications_body">لا يمكن تنبيهك بموعد الجرعة قبل السماح بالتنبيهات.</string>
+    <string name="permission_notifications_action">السماح بالتنبيهات</string>
+    <string name="permission_exact_title">قد تتأخر التنبيهات</string>
+    <string name="permission_exact_body">يحتاج أندرويد إذناً للتنبيه في وقت محدد تماماً. بدونه قد تتأخر الجرعة أثناء سكون الهاتف.</string>
+    <string name="permission_exact_action">السماح بالتنبيهات الدقيقة</string>
+
+    <string name="delete_confirm_title">حذف هذا الجدول؟</string>
+    <string name="delete_confirm_body">ستتوقف تنبيهاته وسيُحذف سجل جرعاته. لا يمكن التراجع عن هذا.</string>
+    <string name="action_cancel">إلغاء</string>
+    <string name="action_save">حفظ</string>
+    <string name="action_confirm">موافق</string>
+
+    <string name="add_title">جدول جديد</string>
+    <string name="field_name_label">الاسم (اختياري)</string>
+    <string name="field_name_placeholder">أموكسيسيلين</string>
+    <string name="section_first_dose">الجرعة الأولى</string>
+    <string name="section_interval">عدد المرات</string>
+    <string name="section_duration">المدة</string>
+    <string name="pick_date">اختر اليوم الأول</string>
+    <string name="pick_time">اختر الوقت</string>
+    <string name="duration_ongoing">مستمر بلا تاريخ انتهاء</string>
+    <string name="interval_custom">مخصص</string>
+    <string name="custom_hours">%1$d ساعة بين الجرعات</string>
+    <string name="decrease">إنقاص</string>
+    <string name="increase">زيادة</string>
+    <string name="summary_finite">%1$s، وتنتهي %2$s</string>
+    <string name="summary_ongoing">يتكرر حتى توقفه</string>
+
+    <string name="history_empty_title">لا يوجد سجل بعد</string>
+    <string name="history_empty_body">تظهر هنا الجرعات التي تؤكد تناولها، والجرعات الفائتة.</string>
+    <string name="status_taken">تم تناولها</string>
+    <string name="status_missed">فائتة</string>
+    <string name="status_skipped">متروكة</string>
+    <string name="history_acted_at">سُجّلت %1$s</string>
+
+    <string name="about_tagline">ساعة هادئة لدواء لا بد من تذكّره.</string>
+    <string name="about_version">الإصدار %1$s</string>
+    <string name="about_how_title">كيف تعمل التنبيهات</string>
+    <string name="about_how_body">يضبط التطبيق تنبيهاً دقيقاً واحداً لجرعتك التالية، ويضبط التالي عند كل تنبيه. وتُعاد التنبيهات بعد إعادة تشغيل الهاتف لتستمر المدة.</string>
+    <string name="about_accessibility_title">إمكانية الوصول</string>
+    <string name="about_accessibility_body">لكل إجراء وصف لقارئ الشاشة، ويتبع النص حجم خط نظامك، وتنعكس الواجهة كاملة بالعربية.</string>
+    <string name="about_privacy_title">الخصوصية</string>
+    <string name="about_privacy_body">كل شيء يبقى على هذا الجهاز: لا حساب ولا إذن للإنترنت ولا تحليلات.</string>
+    <string name="about_font_title">الخط</string>
+    <string name="about_font_body">بخط القاهرة (Cairo) بموجب رخصة SIL للخطوط المفتوحة 1.1.</string>
+</resources>
