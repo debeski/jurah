@@ -1,6 +1,7 @@
 # Jurah (جرعة) — Workspace Tracker
 
 ## Current Snapshot
+Repo: https://github.com/debeski/jurah (PUBLIC), branch `main`.
 Android medication-reminder app, Kotlin + Jetpack Compose, package `debeski.jurah`,
 version 0.1.0 (untagged). Full loop works and is verified on an API 36 emulator:
 create schedule → exact alarm fires → notification with Taken/Snooze → dose recorded →
@@ -28,7 +29,8 @@ history. Debug and minified release both build; release APK is 2.0 MB.
   investigated; re-time it on an idle machine before assuming it is normal.
 
 ## Active & Pending Tasks
-- [ ] Decide whether to commit (nothing committed yet; `git init` done, no commits).
+- [ ] Bundle the SIL OFL 1.1 text for Cairo. The font is redistributed in a PUBLIC repo
+      and in the APK; About attributes it, but the licence text should ship too.
 - [ ] Rename the checkout dir `~/Desktop/depy/app-pilly` → `app-jurah` (workspace rule §5);
       not done here because it would invalidate the running session's working directory.
 - [ ] Release signing: upload keystore + gitignored `keystore.properties`.
@@ -64,6 +66,6 @@ history. Debug and minified release both build; release APK is 2.0 MB.
 - Per-app locale: `adb shell cmd locale set-app-locales debeski.jurah --locales ar`.
 
 ## Agent Handoff
-Nothing is committed yet — the working tree holds the entire app. Ask before
-committing. Next substantive work is release signing and the Play closed-test track;
-next product gap is editing an existing schedule.
+v0.1.0 is committed and pushed to github.com/debeski/jurah (`main`, public), untagged.
+Next substantive work is release signing and the Play closed-test track; next product
+gap is editing an existing schedule. The checkout dir is still `app-pilly`.
